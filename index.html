@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Cafe Lounge</title>
+  <link href="https://unpkg.com/ionicons@4.5.5/dist/css/ionicons.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Overpass:400,600|Roboto" rel="stylesheet">
   <link rel="stylesheet" href="reset.css">
   <link rel="stylesheet" href="typography.css">
@@ -13,7 +14,48 @@
 </head>
 
 <body>
+  <div class="wrapper">
+    <header class="header">
+      <nav class="header-nav">
+        <div class=header-nav__logo-container">
+          <a href="#">
+            <h1 class="logo-text header-nav__content">
+              Cafe <i class="icon ion-md-cafe logo-text__cafe-icon"></i> Lounge
+            </h1>
+          </a>
+        </div>
 
+        <div class="nav-container">
+          <ul class="header-nav__ul">
+            <li class="header-nav__list header-nav__content"><a class="header-nav__link" href="#">Shop</a></li>
+            <li class="header-nav__list header-nav__content"><a class="header-nav__link" href="#">Our Story</a></li>
+            <li class="header-nav__list header-nav__content"><a class="header-nav__link" href="#">Journal</a></li>
+            <li class="header-nav__list header-nav__content"><a class="header-nav__link" href="#">Contact</a></li>
+          </ul>
+
+          <button class="header-nav__basket-btn header-nav__content" type="button">
+            <i class="icon ion-md-basket header-nav__basket-icon"></i>
+          </button>
+        </div>
+      </nav>
+
+      <section class="header__left">
+        <h2 class="hero-title">
+          <span class="hero-title__span">Artisan Coffee</span>
+          <span class="hero-title__span">Roastery & Lounge</span>
+        </h2>
+      </section>
+
+      <section class="header__right">
+        <p class="hero-text">
+          Cafe lounge's coffee is an award winning coffee roasting
+          company established in Mullingar, Co. Westmeath.
+        </p>
+      </section>
+    </header>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 
 </html>
