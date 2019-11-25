@@ -19,6 +19,14 @@ body {
   background: #FFF;
 }
 
+/* Hide elements on initial load (Will be displayed by GSAP) */
+.header-nav__content,
+.hero-title,
+.hero-text,
+.hero {
+  visibility: hidden;
+}
+
 /* For Resolution > 1080p */
 .wrapper {
   max-width: 2000px;
