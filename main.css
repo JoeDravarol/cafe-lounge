@@ -170,3 +170,73 @@ body {
   font-size: 1.2em;
   margin-left: 8%;
 }
+
+/* Coffee Ranged Section*/
+.coffee-ranged {
+  display: grid;
+  grid-template-columns: 45% 1fr;
+  min-height: 500px;
+}
+
+.ranges-container {
+  background: #f5f0ea;
+  height: 400px;
+}
+
+.ranges {
+  height: 100%;
+  display: grid;
+  justify-self: center;
+  align-content: center;
+  margin: 0 15%;
+}
+
+.ranges__title {
+  margin-bottom: 35px;
+}
+
+.ranges__text {
+  font-size: .9rem;
+}
+
+.coffee-ranged__figure {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  height: 400px;
+}
+
+.coffee-ranged__img-container {
+  position: relative;
+}
+
+.coffee-ranged__img {
+  height: 400px;
+  width: 100%;
+  object-fit: cover;
+  filter: blur(.7px);
+}
+
+.coffee-machine-img {
+  object-position: 0% 70%;
+}
+
+.btn-shop {
+  position: absolute;
+  bottom: -73px;
+  left: 0;
+  height: 80px;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2.5rem;
+
+  color: inherit;
+  border: 1px solid #a9a9a9;
+  border-top: none;
+}
+
+.btn-shop:first-of-type {
+  border-right: none;
+}
