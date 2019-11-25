@@ -12,6 +12,13 @@ body {
   background: #B99C79;
 }
 
+.section {
+  min-height: 400px;
+  max-width: 100%;
+  color: rgb(95, 75, 54);
+  background: #fff;
+}
+
 /* For Resolution > 1080p */
 .wrapper {
   max-width: 2000px;
@@ -143,4 +150,23 @@ body {
   position: absolute;
   top: -25px;
   left: 0;
+}
+
+/* Hero Background */
+.hero {
+  max-width: 100%;
+}
+
+/* Experience Section */
+.experience {
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+}
+
+.experience__text {
+  width: 60%;
+  max-width: 830px;
+  font-size: 1.2em;
+  margin-left: 8%;
 }
