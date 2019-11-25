@@ -240,3 +240,41 @@ body {
 .btn-shop:first-of-type {
   border-right: none;
 }
+
+/* Awards Section */
+.awards {
+  height: 500px;
+  display: grid;
+  grid-template-columns: 46% minmax(0, 1fr);
+  align-items: center;
+}
+
+.awards__container {
+  grid-column-start: 2;
+  width: 65%;
+}
+
+.awards__title {
+  font-size: 1.25em;
+  line-height: 1.4;
+  font-weight: 200;
+  color: #5F4B36;
+}
+
+.awards__text {
+  margin: 2.8em 0;
+  width: 85%;
+  font-size: .9em;
+}
+
+.awards__link {
+  color: #d29c5d;
+  display: list-item;
+  font-size: .8em;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.awards__link:hover {
+  color: #a0733f;
+}
