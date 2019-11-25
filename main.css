@@ -16,14 +16,14 @@ body {
   min-height: 400px;
   max-width: 100%;
   color: rgb(95, 75, 54);
-  background: #fff;
+  background: #FFF;
 }
 
 /* For Resolution > 1080p */
 .wrapper {
   max-width: 2000px;
   margin: 0 auto;
-  background: #fff;
+  background: #FFF;
 }
 
 /* Header CSS */
@@ -67,7 +67,7 @@ body {
 
 .header-nav__ul {
   width: 70%;
-  color: #fff;
+  color: #FFF;
   font-size: .9rem;
   display: flex;
   justify-content: space-between;
@@ -85,8 +85,8 @@ body {
 
 .header-nav__basket-btn {
   color: #C6AD8F;
-  background: #fff;
-  border: 0 none #fff;
+  background: #FFF;
+  border: 0 none #FFF;
   width: 55px;
   height: 35px;
   border-radius: 2em;
@@ -101,7 +101,7 @@ body {
 .header-nav__basket-btn:hover {
   border: 2px solid white;
   background-color: #C6AD8F;
-  color: #fff;
+  color: #FFF;
 }
 
 .header-nav__basket-btn:active {
@@ -131,7 +131,7 @@ body {
 /* Header Right */
 .header__right {
   background-color: #C6AD8F;
-  color: #fff;
+  color: #FFF;
 }
 
 .hero-text {
@@ -277,4 +277,101 @@ body {
 
 .awards__link:hover {
   color: #a0733f;
+}
+
+/* Footer */
+.footer {
+  font-family: 'Roboto', sans-serif;
+  background-color: #311900;
+  color: #B9B9B9;
+  min-height: 275px;
+  position: relative;
+  display: grid;
+  align-items: center;
+  overflow: hidden;
+}
+
+.footer__info {
+  margin: 0 7.2em;
+  padding-bottom: 1.8em;
+  display: grid;
+  grid-template-columns: .83fr 1fr;
+}
+
+.footer__info__title {
+  font-size: .9em;
+  margin-top: .7em;
+  margin-bottom: 2em;
+  color: #FFF;
+}
+
+.footer__info__text {
+  font-size: .75em;
+  color: #80726a;
+}
+
+/* Newsletter */
+.newsletter__signup {
+  display: flex;
+}
+
+.newsletter__email {
+  background: none;
+  border: none;
+  width: 150px;
+  border-bottom: 1px solid #A9A9A9;
+  position: relative;
+}
+
+.newsletter__email::placeholder {
+  color: #B9B9B9;
+}
+
+.newsletter__email:focus {
+  outline: none;
+  color: #FFF;
+}
+
+.newsletter__email::placeholder {
+  color: #FFF;
+}
+
+.newsletter__submit {
+  font-size: 1.5em;
+  background-color: transparent;
+  color: #A9A9A9;
+  cursor: pointer;
+  border: none;
+  border-bottom: 1px solid #A9A9A9;
+}
+
+/* Cafe info */
+.cafe-info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.footer__social-link,
+.footer__misc-link{
+  color: #80726a;
+}
+
+.footer__social-link:hover,
+.footer__misc-link:hover{
+  color: #FFF;
+}
+
+.footer__info__text__span,
+.footer__social-link {
+  display: block;
+}
+
+.footer__misc-info {
+  position: absolute;
+  top: 90%;
+  left: 49.5%;
+  transform: translate(-49.5%, -90%);
+  text-align: center;
+  font-size: .8em;
 }
