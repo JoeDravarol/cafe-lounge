@@ -1,39 +1,64 @@
 let currentCarouselAt = 0;
 const carousels = document.querySelectorAll('.carousel__at')
 const carouselButtons = document.querySelectorAll('.carousel__btn');
-const heroTextRule = CSSRulePlugin.getRule('.hero-text::after')
-const experienceSectionTween = gsap.from('.experience__text', { opacity: 0, x: -200, ease: 'power1' })
-const awardsSectionTween = gsap.from('.awards__content', { opacity: 0, x: -600, stagger: 0.6, ease: 'power1' })
 
-const createTimeline = (duration = 1, ease = 'power1') => {
-  return gsap.timeline({ defaults: { duration, autoAlpha: 0, ease } })
+const animationsController = () => {
+  const createTimeline = (duration = 1, ease = 'power1') => {
+    return gsap.timeline({ defaults: { duration, autoAlpha: 0, ease } })
+  }
+
+  const createHeroSection = () => {
+    const heroTextRule = CSSRulePlugin.getRule('.hero-text::after')
+
+    return createTimeline()
+      .from('.header-nav__content', { opacity: 0, stagger: .45, x: -60 })
+      .from('.hero-title', { opacity: 0 }, '-=0.3')
+      .from('.hero-text', { opacity: 0 }, '-=0.4')
+      .from(heroTextRule, { cssRule: { width: 0, left: '11%' } }, '-=1')
+      .from('.hero', { opacity: 0, y: 60 });
+  }
+
+  const createExperienceSection = () => {
+    return gsap.from('.experience__text', { opacity: 0, x: -200, ease: 'power1' })
+  }
+
+  const createRangesSection = () => {
+    return createTimeline()
+      .from('.ranges__content', { opacity: 0, y: -50, stagger: 0.5 })
+      .from('.coffee-ranged__img', { opacity: 0, x: -60, stagger: 0.4 })
+      .from('.btn-shop', { opacity: 0, y: -60, stagger: 0.45 }, '-=0.6')
+      .from('.btn-shop__span', { x: -60, stagger: 0.45 }, '-=0.5');
+  }
+
+  const createAwardsSection = () => {
+    return gsap.from('.awards__content', { opacity: 0, x: -600, stagger: 0.6, ease: 'power1' })
+  }
+
+  const createCarouselSection = () => {
+    return createTimeline()
+      .from(carousels[0].querySelector('.carousel__image'), { opacity: 0, y: 100 })
+      .from(carousels[0].querySelectorAll('.description__content'), { opacity: 0, y: -40, stagger: 0.5 }, '-=0.5');
+  }
+
+  const createFooterSection = () => {
+    return createTimeline()
+      .from('.footer__info__content', { opacity: 0, x: -50, stagger: 0.2 })
+      .from('.footer__misc-info', { opacity: 0, y: 30 }, '-=0.85');
+  }
+
+  return {
+    createHeroSection,
+    createExperienceSection,
+    createRangesSection,
+    createAwardsSection,
+    createCarouselSection,
+    createFooterSection
+  }
 }
-
-const heroSectionTl = createTimeline()
-const rangesSectionTl = createTimeline()
-const carouselSectionTl = createTimeline()
-const footerSectionTl = createTimeline()
-
-heroSectionTl.from('.header-nav__content', { opacity: 0, stagger: .45, x: -60 })
-  .from('.hero-title', { opacity: 0 }, '-=0.3')
-  .from('.hero-text', { opacity: 0 }, '-=0.4')
-  .from(heroTextRule, { cssRule: { width: 0, left: '11%' } }, '-=1')
-  .from('.hero', { opacity: 0, y: 60 })
-
-rangesSectionTl.from('.ranges__content', { opacity: 0, y: -50, stagger: 0.5 })
-  .from('.coffee-ranged__img', { opacity: 0, x: -60, stagger: 0.4 })
-  .from('.btn-shop', { opacity: 0, y: -60, stagger: 0.45 }, '-=0.6')
-  .from('.btn-shop__span', { x: -60, stagger: 0.45 }, '-=0.5')
-
-carouselSectionTl.from(carousels[0].querySelector('.carousel__image'), { opacity: 0, y: 100 })
-  .from(carousels[0].querySelectorAll('.description__content'), { opacity: 0, y: -40, stagger: 0.5 }, '-=0.5')
-
-footerSectionTl.from('.footer__info__content', { opacity: 0, x: -50, stagger: 0.2 })
-  .from('.footer__misc-info', { opacity: 0, y: 30 }, '-=0.85')
 
 const sceneController = () => {
   const controller = new ScrollMagic.Controller()
- 
+
   const createScene = (animation, element, hookPosition, reverse) => {
     const scene = new ScrollMagic.Scene({
       triggerElement: element,
@@ -41,31 +66,33 @@ const sceneController = () => {
       reverse
     })
       .setTween(animation)
- 
+
     return scene
   }
- 
+
   const addScene = (scene) => {
     controller.addScene(scene)
   }
- 
+
   const setupScene = (animation, element, hookPosition = 0.5, reverse = false) => {
     const newScene = createScene(animation, element, hookPosition, reverse);
     addScene(newScene)
   }
- 
+
   return {
     setupScene
   }
 }
- 
+
+const animations = animationsController()
 const scene = sceneController();
 
-scene.setupScene(experienceSectionTween, '.experience', 0.6)
-scene.setupScene(rangesSectionTl, '.coffee-ranged')
-scene.setupScene(awardsSectionTween, '.awards', 0.4)
-scene.setupScene(carouselSectionTl, '.carousel', 0.3)
-scene.setupScene(footerSectionTl, 'footer', 0.8)
+animations.createHeroSection()
+scene.setupScene(animations.createExperienceSection(), '.experience', 0.6)
+scene.setupScene(animations.createRangesSection(), '.coffee-ranged')
+scene.setupScene(animations.createAwardsSection(), '.awards', 0.4)
+scene.setupScene(animations.createCarouselSection(), '.carousel', 0.3)
+scene.setupScene(animations.createFooterSection(), 'footer', 0.8)
 
 // Setup Carousel
 const carouselTimeline = createTimeline()
