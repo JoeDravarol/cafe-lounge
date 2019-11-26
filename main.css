@@ -299,13 +299,11 @@ body {
 .carousels-container {
   grid-column-start: 2;
   position: relative;
-  background: teal;
   width: 1390px;
 }
 
 .carousel__at {
   display: flex;
-  background: teal;
   margin: 5em 0;
   height: 624px;
   max-width: 100%;
@@ -342,6 +340,7 @@ body {
   font-size: .8em;
   opacity: .5;
   text-transform: uppercase;
+  display: inline-block;
 }
 
 .description__title {
@@ -359,6 +358,40 @@ body {
   max-width: 500px;
   margin-bottom: 50px;
   color: #6a6056;
+}
+
+.carousel__buttons {
+  position: absolute;
+  top: 620px;
+  left: 39.5%;
+  transform: translateY(39.5%);
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  width: 100px;
+}
+
+.carousel__btn {
+  cursor: pointer;
+  opacity: 0.5;
+  transform: scale(2);
+}
+
+.carousel__btn--active {
+  opacity: 1;
+}
+
+.carousel__btn:hover {
+  animation: dot 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes dot{
+  0% {
+    transform: scale(2);
+  }
+  100% {
+    transform: scale(2.5);
+  }
 }
 
 /* Footer */
