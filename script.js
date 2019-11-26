@@ -31,32 +31,41 @@ carouselSectionTl.from(carousels[0].querySelector('.carousel__image'), { opacity
 footerSectionTl.from('.footer__info__content', { opacity: 0, x: -50, stagger: 0.2 })
   .from('.footer__misc-info', { opacity: 0, y: 30 }, '-=0.85')
 
-// ScrollMagic Scenes
-const createScene = (animation, element, hookPosition = 0.5, reverse = false) => {
-  const scene = new ScrollMagic.Scene({
-    triggerElement: element,
-    triggerHook: hookPosition,
-    reverse
-  })
-    .setTween(animation)
-
-  return scene
+const sceneController = () => {
+  const controller = new ScrollMagic.Controller()
+ 
+  const createScene = (animation, element, hookPosition, reverse) => {
+    const scene = new ScrollMagic.Scene({
+      triggerElement: element,
+      triggerHook: hookPosition,
+      reverse
+    })
+      .setTween(animation)
+ 
+    return scene
+  }
+ 
+  const addScene = (scene) => {
+    controller.addScene(scene)
+  }
+ 
+  const setupScene = (animation, element, hookPosition = 0.5, reverse = false) => {
+    const newScene = createScene(animation, element, hookPosition, reverse);
+    addScene(newScene)
+  }
+ 
+  return {
+    setupScene
+  }
 }
+ 
+const scene = sceneController();
 
-const experienceSectionScene = createScene(experienceSectionTween, '.experience', 0.6)
-const rangesSectionScene = createScene(rangesSectionTl, '.coffee-ranged')
-const awardsSectionScene = createScene(awardsSectionTween, '.awards', 0.4)
-const carouselSectionScene = createScene(carouselSectionTl, '.carousel', 0.3)
-const footerSectionScene = createScene(footerSectionTl, 'footer', 0.8)
-const controller = new ScrollMagic.Controller()
-
-controller.addScene([
-  experienceSectionScene,
-  rangesSectionScene,
-  awardsSectionScene,
-  carouselSectionScene,
-  footerSectionScene
-])
+scene.setupScene(experienceSectionTween, '.experience', 0.6)
+scene.setupScene(rangesSectionTl, '.coffee-ranged')
+scene.setupScene(awardsSectionTween, '.awards', 0.4)
+scene.setupScene(carouselSectionTl, '.carousel', 0.3)
+scene.setupScene(footerSectionTl, 'footer', 0.8)
 
 // Setup Carousel
 const carouselTimeline = createTimeline()
