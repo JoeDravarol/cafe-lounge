@@ -147,10 +147,12 @@ const setupCarousel = () => {
     const carousel = document.querySelectorAll(DOMSelector.container)[0]
     const carouselImage = carousel.querySelector(DOMSelector.image)
     const carouselDescription = carousel.querySelectorAll(DOMSelector.description)
+    const carouselButtons = document.querySelectorAll(DOMSelector.button)
     const tl = gsap.timeline({ defaults: { duration: 1, autoAlpha: 0, ease: 'power1' } })
 
     return tl.from(carouselImage, { y: 100, opacity: 0 })
       .from(carouselDescription, { y: -40, opacity: 0, stagger: 0.5 }, '-=0.5')
+      .from(carouselButtons, { y: 60, stagger: 0.4, pointerEvents: 'none', clearProps: 'all', ease: 'back' })
   }
 
   const setupListener = () => {
