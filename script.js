@@ -1,7 +1,3 @@
-let currentCarouselAt = 0;
-const carousels = document.querySelectorAll('.carousel__at')
-const carouselButtons = document.querySelectorAll('.carousel__btn');
-
 const animationsController = () => {
   const createTimeline = (duration = 1, ease = 'power1') => {
     return gsap.timeline({ defaults: { duration, autoAlpha: 0, ease } })
@@ -34,12 +30,6 @@ const animationsController = () => {
     return gsap.from('.awards__content', { opacity: 0, x: -600, stagger: 0.6, ease: 'power1' })
   }
 
-  const createCarouselSection = () => {
-    return createTimeline()
-      .from(carousels[0].querySelector('.carousel__image'), { opacity: 0, y: 100 })
-      .from(carousels[0].querySelectorAll('.description__content'), { opacity: 0, y: -40, stagger: 0.5 }, '-=0.5');
-  }
-
   const createFooterSection = () => {
     return createTimeline()
       .from('.footer__info__content', { opacity: 0, x: -50, stagger: 0.2 })
@@ -51,7 +41,6 @@ const animationsController = () => {
     createExperienceSection,
     createRangesSection,
     createAwardsSection,
-    createCarouselSection,
     createFooterSection
   }
 }
@@ -84,68 +73,121 @@ const sceneController = () => {
   }
 }
 
+const setupCarousel = () => {
+  let currentCarouselNumber = 0;
+  const masterTimeline = gsap.timeline({ defaults: { duration: 1, autoAlpha: 0, ease: 'power1' } })
+
+  const DOMSelector = {
+    container: '.carousel__at',
+    button: '.carousel__btn',
+    image: '.carousel__image',
+    description: '.description__content',
+    btnActiveCSS: 'carousel__btn--active'
+  }
+
+  const getCurrentCarouselNumber = () => currentCarouselNumber;
+  const setCurrentCarouselNumber = newNumber => currentCarouselNumber = newNumber;
+  const createTimeline = () => gsap.timeline();
+
+  const slideOutAnimation = (current, next) => {
+    return createTimeline().to(current.texts, { y: -40, opacity: 0, stagger: 0.3 })
+      .to(current.image, { y: 100, opacity: 0 }, '-=0.7')
+      .to(current.container, 0.3, { css: { zIndex: 0 } })
+      .to(next.container, 0.1, { css: { zIndex: 1 } }, '-=0.5');
+  }
+
+  const slideInAnimation = (next) => {
+    return createTimeline()
+      .from(next.image, { y: 100, opacity: 0 }, '-=0.1')
+      .from(next.texts, { y: -40, opacity: 0, stagger: 0.5 }, '-=0.5');
+  }
+
+  const clearGsapProps = (timeline, current) => {
+    timeline.set(current.texts, { clearProps: 'all' })
+      .set(current.image, { clearProps: 'all' })
+  }
+
+  const switchCarouselAnimation = (currentCarousel, nextCarousel) => {
+    masterTimeline
+      .add(slideOutAnimation(currentCarousel, nextCarousel))
+      .add(slideInAnimation(nextCarousel))
+
+    clearGsapProps(masterTimeline, currentCarousel)
+  }
+
+  const getCarouselElements = (carouselNumber) => {
+    const carousels = document.querySelectorAll(DOMSelector.container)
+    const carousel = carousels[carouselNumber];
+
+    return {
+      container: carousel,
+      image: carousel.querySelector(DOMSelector.image),
+      texts: carousel.querySelectorAll(DOMSelector.description)
+    }
+  }
+
+  const nextCarousel = (carouselNumber) => {
+    const currentCarousel = getCarouselElements(getCurrentCarouselNumber())
+    const nextCarousel = getCarouselElements(carouselNumber)
+
+    switchCarouselAnimation(currentCarousel, nextCarousel)
+    setCurrentCarouselNumber(carouselNumber)
+  }
+
+  const changeDots = (dot) => {
+    const carouselButtons = document.querySelectorAll(DOMSelector.button)
+
+    carouselButtons.forEach(button => {
+      button.classList.remove(DOMSelector.btnActiveCSS)
+    })
+    dot.classList.add(DOMSelector.btnActiveCSS)
+  }
+
+  const initialAnimation = () => {
+    const carousel = document.querySelectorAll(DOMSelector.container)[0]
+    const carouselImage = carousel.querySelector(DOMSelector.image)
+    const carouselDescription = carousel.querySelectorAll(DOMSelector.description)
+    const tl = gsap.timeline({ defaults: { duration: 1, autoAlpha: 0, ease: 'power1' } })
+
+    return tl.from(carouselImage, { y: 100, opacity: 0 })
+      .from(carouselDescription, { y: -40, opacity: 0, stagger: 0.5 }, '-=0.5')
+  }
+
+  const setupListener = () => {
+    const carouselButtons = document.querySelectorAll(DOMSelector.button)
+
+    carouselButtons.forEach((button, index) => {
+      button.addEventListener('click', function () {
+        const currentCarouselNumber = getCurrentCarouselNumber()
+
+        // Disable button when animation is playing
+        if (masterTimeline.isActive()) {
+          return;
+        } else if (currentCarouselNumber === index) {
+          return;
+        }
+
+        changeDots(this)
+        nextCarousel(index)
+      })
+    })
+  }
+
+  return {
+    setupListener,
+    initialAnimation
+  }
+}
+
 const animations = animationsController()
 const scene = sceneController();
+const carouselController = setupCarousel()
 
 animations.createHeroSection()
 scene.setupScene(animations.createExperienceSection(), '.experience', 0.6)
 scene.setupScene(animations.createRangesSection(), '.coffee-ranged')
 scene.setupScene(animations.createAwardsSection(), '.awards', 0.4)
-scene.setupScene(animations.createCarouselSection(), '.carousel', 0.3)
+scene.setupScene(carouselController.initialAnimation(), '.carousel', 0.3)
 scene.setupScene(animations.createFooterSection(), 'footer', 0.8)
 
-// Setup Carousel
-const carouselTimeline = createTimeline()
-
-const getCarouselElements = (number) => {
-  const carousel = carousels[number];
-
-  return {
-    container: carousel,
-    image: carousel.querySelector('.carousel__image'),
-    texts: carousel.querySelectorAll('.description__content')
-  }
-}
-
-const createCarouselAnimation = (timeline, current, next) => {
-  timeline.to(current.texts, { y: -40, opacity: 0, stagger: 0.3 })
-    .to(current.image, { y: 100, opacity: 0 }, '-=0.7')
-    .to(current.container, 0.3, { css: { zIndex: 0 } })
-    .to(next.container, 0.1, { css: { zIndex: 1 } }, '-=0.5')
-    .from(next.image, { y: 100, opacity: 0 }, '-=0.1')
-    .from(next.texts, { y: -40, opacity: 0, stagger: 0.5 }, '-=0.5')
-    .set(current.texts, { y: 0, opacity: 1 })
-    .set(current.image, { y: 0, opacity: 1 })
-
-  return timeline
-}
-
-const nextCarousel = (carouselNumber) => {
-  const currentCarousel = getCarouselElements(currentCarouselAt)
-  const nextCarousel = getCarouselElements(carouselNumber)
-
-  createCarouselAnimation(carouselTimeline, currentCarousel, nextCarousel)
-
-  currentCarouselAt = carouselNumber
-}
-
-const changeDots = (dot) => {
-  carouselButtons.forEach(button => {
-    button.classList.remove('carousel__btn--active')
-  })
-  dot.classList.add('carousel__btn--active')
-}
-
-carouselButtons.forEach((button, index) => {
-  button.addEventListener('click', function () {
-    // Disable button when animation is playing
-    if (carouselTimeline.isActive()) {
-      return;
-    } else if (currentCarouselAt === index) {
-      return;
-    }
-
-    changeDots(this)
-    nextCarousel(index)
-  })
-})
+carouselController.setupListener()
