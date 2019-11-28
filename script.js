@@ -153,6 +153,26 @@ const setupCarousel = () => {
     return tl.from(carouselImage, { y: 100, opacity: 0 })
       .from(carouselDescription, { y: -40, opacity: 0, stagger: 0.5 }, '-=0.5')
       .from(carouselButtons, { y: 60, stagger: 0.4, pointerEvents: 'none', clearProps: 'all', ease: 'back' })
+      .add(autoSwitch)
+  }
+
+  const autoSwitch = () => {
+    let carouselNumber = getCurrentCarouselNumber() + 1;
+    const duration = 10;
+
+    if (carouselNumber > 2) carouselNumber = 0;
+
+    const newDot = document.querySelector(`.carousel-${carouselNumber + 1}`).children[0]
+
+    gsap.delayedCall(duration, nextCarousel, [carouselNumber])
+    gsap.delayedCall(duration, changeDots, [newDot])
+    gsap.delayedCall(duration, autoSwitch)
+  }
+
+  const killAutoSwitch = () => {
+    gsap.killTweensOf(autoSwitch)
+    gsap.killTweensOf(nextCarousel)
+    gsap.killTweensOf(changeDots)
   }
 
   const setupListener = () => {
@@ -169,8 +189,10 @@ const setupCarousel = () => {
           return;
         }
 
+        killAutoSwitch()
         changeDots(this)
         nextCarousel(index)
+        gsap.delayedCall(3, autoSwitch)
       })
     })
   }
