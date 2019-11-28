@@ -123,3 +123,93 @@
     grid-template-columns: .6fr 1fr;
   }
 }
+
+@media only screen and (max-width: 690px) {
+  .header-nav {
+    padding: 0 5% 0 5%;
+  }
+
+  .logo-text,
+  .header-nav__ul {
+    font-size: .6em;
+  }
+
+  .header-nav__ul {
+    width: 80%;
+  }
+
+  .header-nav__basket-btn {
+    width: 40px;
+    height: 20px;
+    line-height: 50%;
+  }
+
+  .header-nav__basket-icon {
+    font-size: 1.25em;
+  }
+
+  .header__left,
+  .header__right {
+    height: 45vh;
+    padding: 0 5% 10vh;
+  }
+
+  /* Experience Section */
+  .experience__text {
+    font-size: .9em;
+    width: 400px;
+    margin-left: 20%;
+  }
+
+  /* Ranges Section */
+  .ranges__title {
+    font-size: 1.3em;
+  }
+
+  .ranges-container {
+    height: 500px;
+  }
+
+  .coffee-ranged__figure {
+    height: 300px;
+  }
+
+  .coffee-ranged__img {
+    height: 350px;
+  }
+
+  /* Carousel Section */
+  .carousel__title {
+    font-size: 1.3em;
+  }
+
+  .carousel__text {
+    font-size: .8em;
+  }
+
+  .carousel__buttons {
+    transform: scale(0.8);
+  }
+
+  /* Footer */
+  .footer__info__title {
+    font-size: .8em;
+  }
+
+  .footer__info__text {
+    font-size: .6em;
+  }
+
+  .newsletter__email {
+    width: 82px;
+  }
+
+  .newsletter__submit {
+    font-size: 1em;
+  }
+
+  .newsletter__email::placeholder,
+  .footer__misc-info {
+    font-size: .7em;
+  }
+}
