@@ -21,9 +21,9 @@ const animationsController = () => {
   const createRangesSection = () => {
     return createTimeline()
       .from('.ranges__content', { opacity: 0, y: -50, stagger: 0.5 })
-      .from('.coffee-ranged__img', { opacity: 0, x: -60, stagger: 0.4 })
-      .from('.btn-shop', { opacity: 0, y: -60, stagger: 0.45 }, '-=0.6')
-      .from('.btn-shop__span', { x: -60, stagger: 0.45 }, '-=0.5');
+      .from('.coffee-ranged__img', { opacity: 0, x: -60, stagger: 0.3 }, '-=0.5')
+      .from('.btn-shop', { opacity: 0, y: -60, stagger: 0.3 }, '-=0.6')
+      .from('.btn-shop__span', { x: -60, stagger: 0.3 }, '-=0.5');
   }
 
   const createAwardsSection = () => {
