@@ -7,11 +7,11 @@ const animationsController = () => {
     const heroTextRule = CSSRulePlugin.getRule('.hero-text::after')
 
     return createTimeline()
-      .from('.header-nav__content', { opacity: 0, stagger: 0.15, x: -60 })
-      .from('.hero-title', { opacity: 0 }, '-=0.3')
-      .from('.hero-text', { opacity: 0 }, '-=0.4')
-      .from(heroTextRule, { cssRule: { width: 0, left: '11%' } }, '-=0.7')
-      .from('.hero', { opacity: 0, y: 60 }, '-=0.8');
+      .from('.header-nav__content', { opacity: 0, stagger: 0.1, x: -90 })
+      .from('.hero-title', 0.2, { opacity: 0 }, '-=0.5')
+      .from('.hero-text', 0.2, { opacity: 0 }, '-=0.5')
+      .from(heroTextRule, { cssRule: { width: 0, left: '11%' } }, '-=0.55')
+      .from('.hero', 0.2, { opacity: 0, y: 60 }, '-=0.5');
   }
 
   const createExperienceSection = () => {
