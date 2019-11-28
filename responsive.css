@@ -213,3 +213,204 @@
     font-size: .7em;
   }
 }
+
+@media only screen and (max-width: 500px) {
+
+  /* Navbar */
+  .logo-text {
+    font-size: .5em;
+  }
+
+  .logo-text__cafe-icon {
+    font-size: 1.4em;
+  }
+
+  .nav-container {
+    font-size: .7em;
+    width: 47%;
+  }
+
+  .header-nav__ul {
+    width: 100%;
+  }
+
+  .header-nav__basket-btn {
+    display: none;
+  }
+
+  /* Header */
+  .header__left,
+  .header__right {
+    height: 180px;
+    padding: 0 3% 5vh;
+  }
+
+  .header__left {
+    padding-bottom: 7vh;
+  }
+
+  .hero-title {
+    font-size: .95em;
+  }
+
+  .hero-text {
+    font-size: .55em;
+    min-width: 100%;
+  }
+
+  /* Experience Section */
+  .experience {
+    min-height: 250px;
+    align-items: center;
+  }
+
+  .experience__text {
+    font-size: .7em;
+    margin: 0 20px;
+  }
+
+  .hero-text::after {
+    top: -13px;
+  }
+
+  /* Ranges Section */
+  .coffee-ranged {
+    height: 610px;
+  }
+
+  .ranges-container {
+    height: 300px;
+    width: 100%;
+  }
+
+  .ranges {
+    margin: 0 20px;
+  }
+
+  .ranges__title {
+    font-size: 1.15em;
+    margin-bottom: 25px;
+  }
+
+  .ranges__text {
+    font-size: .75em;
+  }
+
+  .coffee-ranged__figure {
+    height: 200px;
+  }
+
+  .coffee-ranged__img {
+    height: 100%;
+  }
+
+  .coffee-art-img {
+    object-position: 45% 90%;
+  }
+
+  .coffee-machine-img {
+    object-position: 30% 50%;
+  }
+
+  .btn-shop {
+    font-size: .8em;
+    padding: 0 10px;
+  }
+
+  /* Awards Section */
+  .awards {
+    display: flex;
+    justify-content: center;
+    margin-top: 2em;
+  }
+
+  .awards__title {
+    font-size: .95em;
+    width: 100%;
+  }
+
+  .awards__text {
+    font-size: .7em;
+    width: 100%;
+  }
+
+  /* Carousel Section */
+  .carousel {
+    min-height: 300px;
+    height: 300px;
+  }
+
+  .carousel__figure {
+    display: none;
+  }
+
+  .description {
+    padding: 20px;
+    height: 300px;
+    overflow: hidden;
+  }
+
+  .carousel__at {
+    font-size: .7em;
+  }
+
+  .description__title {
+    font-size: .95em;
+  }
+
+  .description__text {
+    font-size: .75em;
+  }
+
+  .carousel__buttons {
+    top: 300px;
+    left: 3%;
+    transform: scale(0.65);
+  }
+
+  /* Footer */
+  .footer__info {
+    margin: 0 10px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footer__info__title {
+    font-size: .7em;
+    margin: 10px 0;
+  }
+
+  .footer__info__text {
+    font-size: .6em;
+  }
+
+  .newsletter {
+    display: grid;
+    align-self: center;
+    margin-top: 10px;
+  }
+
+  .newsletter__signup {
+    width: auto;
+  }
+
+  .cafe-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    justify-items: center;
+    margin: 20px 0;
+  }
+
+  .contact,
+  .locations {
+    margin-bottom: 10px;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  /* Footer */
+  .footer__misc-info {
+    width: 75%;
+  }
+}
