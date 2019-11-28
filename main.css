@@ -300,6 +300,7 @@ body {
   grid-column-start: 2;
   position: relative;
   width: 1390px;
+  max-width: 100%;
 }
 
 .carousel__at {
@@ -364,7 +365,6 @@ body {
   position: absolute;
   top: 620px;
   left: 39.5%;
-  transform: translateY(39.5%);
   z-index: 2;
   display: flex;
   justify-content: space-between;

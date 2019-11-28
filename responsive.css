@@ -1,0 +1,125 @@
+/* Media Queries */
+@media only screen and (max-width: 1350px) {
+  .carousel__buttons {
+    left: 45%;
+  }
+}
+
+@media only screen and (max-width: 1150px) {
+
+  /* Header left title */
+  .hero-title {
+    font-size: 2.9em;
+  }
+
+  .hero-text {
+    font-size: 1em;
+  }
+  
+  .carousel__figure {
+    max-width: 35%;
+  }
+
+  .carousel__buttons {
+    left: 47%;
+  }
+}
+
+@media only screen and (max-width: 950px) {
+
+  /* Navbar */
+  .logo-text,
+  .header-nav__ul {
+    font-size: .7em;
+  }
+
+  .header-nav__basket-btn {
+    width: 45px;
+    height: 30px;
+  }
+
+  .header-nav__basket-icon {
+    font-size: 1.5em;
+  }
+
+  /* Header */
+  .header__left,
+  .header__right {
+    height: 55vh;
+  }
+  
+  .hero-title {
+    font-size: 1.9em;
+  }
+
+  .hero-text {
+    font-size: .8em;
+  }
+
+  /* Experience Section */
+  .experience__text {
+    font-size: 1em;
+    width: 600px;
+  }
+
+  /* Coffee Ranges Section */
+  .coffee-ranged {
+    display: flex;
+    flex-direction: column; 
+    height: 980px;
+  }
+
+  .ranges-container {
+    height: 350px;
+  }
+
+  .coffee-ranged__img {
+    height: 550px;
+  }
+
+  /* Awards Section */
+  .awards {
+    height: 500px;
+    grid-template-columns: 35% minmax(0, 1fr)
+  }
+
+  .awards__container {
+    width: 80%;
+  }
+
+  .awards__title {
+    font-size: 1.05em;
+  }
+
+  .awards__text {
+    font-size: .8em;
+  }
+
+  /* Carousel Section */
+  .carousel {
+    display: block;
+    height: 600px;
+  }
+
+  .carousel__figure {
+    overflow: hidden;
+  }
+
+  .description__text {
+    font-size: 1em;
+  }
+
+  .carousel__buttons {
+    transform: scale(1);
+  }
+
+  /* Footer Section */
+  .footer {
+    height: 400px;
+  }
+
+  .footer__info {
+    margin: 0 2em;
+    grid-template-columns: .6fr 1fr;
+  }
+}
