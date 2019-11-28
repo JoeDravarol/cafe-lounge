@@ -1,5 +1,5 @@
 const animationsController = () => {
-  const createTimeline = (duration = 1, ease = 'power1') => {
+  const createTimeline = (duration = 0.6, ease = 'power2') => {
     return gsap.timeline({ defaults: { duration, autoAlpha: 0, ease } })
   }
 
@@ -7,33 +7,33 @@ const animationsController = () => {
     const heroTextRule = CSSRulePlugin.getRule('.hero-text::after')
 
     return createTimeline()
-      .from('.header-nav__content', { opacity: 0, stagger: .45, x: -60 })
+      .from('.header-nav__content', { opacity: 0, stagger: 0.15, x: -60 })
       .from('.hero-title', { opacity: 0 }, '-=0.3')
       .from('.hero-text', { opacity: 0 }, '-=0.4')
-      .from(heroTextRule, { cssRule: { width: 0, left: '11%' } }, '-=1')
-      .from('.hero', { opacity: 0, y: 60 });
+      .from(heroTextRule, { cssRule: { width: 0, left: '11%' } }, '-=0.7')
+      .from('.hero', { opacity: 0, y: 60 }, '-=0.8');
   }
 
   const createExperienceSection = () => {
-    return gsap.from('.experience__text', { opacity: 0, x: -200, ease: 'power1' })
+    return gsap.from('.experience__text', { duration: 0.3, opacity: 0, x: -200, ease: 'power1' })
   }
 
   const createRangesSection = () => {
     return createTimeline()
-      .from('.ranges__content', { opacity: 0, y: -50, stagger: 0.5 })
-      .from('.coffee-ranged__img', { opacity: 0, x: -60, stagger: 0.3 }, '-=0.5')
-      .from('.btn-shop', { opacity: 0, y: -60, stagger: 0.3 }, '-=0.6')
-      .from('.btn-shop__span', { x: -60, stagger: 0.3 }, '-=0.5');
+      .from('.ranges__content', { opacity: 0, y: -50, stagger: 0.2 })
+      .from('.coffee-ranged__img', { opacity: 0, x: -60, stagger: 0.2 }, '-=0.3')
+      .from('.btn-shop', { opacity: 0, y: -60, stagger: 0.2 }, '-=0.4')
+      .from('.btn-shop__span', { x: -60, stagger: 0.2 }, '-=0.3');
   }
 
   const createAwardsSection = () => {
-    return gsap.from('.awards__content', { opacity: 0, x: -600, stagger: 0.6, ease: 'power1' })
+    return gsap.from('.awards__content', { opacity: 0, x: -600, stagger: 0.3, ease: 'power1' })
   }
 
   const createFooterSection = () => {
     return createTimeline()
-      .from('.footer__info__content', { opacity: 0, x: -50, stagger: 0.2 })
-      .from('.footer__misc-info', { opacity: 0, y: 30 }, '-=0.85');
+      .from('.footer__info__content', { opacity: 0, x: -50, stagger: 0.1 })
+      .from('.footer__misc-info', { opacity: 0, y: 30 }, '-=0.9');
   }
 
   return {
@@ -75,7 +75,7 @@ const sceneController = () => {
 
 const setupCarousel = () => {
   let currentCarouselNumber = 0;
-  const masterTimeline = gsap.timeline({ defaults: { duration: 1, autoAlpha: 0, ease: 'power1' } })
+  const masterTimeline = gsap.timeline({ defaults: { duration: 0.5, autoAlpha: 0, ease: 'power2' } })
 
   const DOMSelector = {
     container: '.carousel__at',
@@ -90,16 +90,16 @@ const setupCarousel = () => {
   const createTimeline = () => gsap.timeline();
 
   const slideOutAnimation = (current, next) => {
-    return createTimeline().to(current.texts, { y: -40, opacity: 0, stagger: 0.3 })
-      .to(current.image, { y: 100, opacity: 0 }, '-=0.7')
+    return createTimeline().to(current.texts, { y: -40, opacity: 0, stagger: 0.2 })
+      .to(current.image, 0.55, { y: 100, opacity: 0 }, '-=0.7')
       .to(current.container, 0.3, { css: { zIndex: 0 } })
       .to(next.container, 0.1, { css: { zIndex: 1 } }, '-=0.5');
   }
 
   const slideInAnimation = (next) => {
     return createTimeline()
-      .from(next.image, { y: 100, opacity: 0 }, '-=0.1')
-      .from(next.texts, { y: -40, opacity: 0, stagger: 0.5 }, '-=0.5');
+      .from(next.image, 0.55, { y: 100, opacity: 0 }, '-=0.1')
+      .from(next.texts, { y: -40, opacity: 0, stagger: 0.2 }, '-=0.5');
   }
 
   const clearGsapProps = (timeline, current) => {
@@ -148,11 +148,11 @@ const setupCarousel = () => {
     const carouselImage = carousel.querySelector(DOMSelector.image)
     const carouselDescription = carousel.querySelectorAll(DOMSelector.description)
     const carouselButtons = document.querySelectorAll(DOMSelector.button)
-    const tl = gsap.timeline({ defaults: { duration: 1, autoAlpha: 0, ease: 'power1' } })
+    const tl = gsap.timeline({ defaults: { duration: 0.7, autoAlpha: 0, ease: 'power2' } })
 
-    return tl.from(carouselImage, { y: 100, opacity: 0 })
-      .from(carouselDescription, { y: -40, opacity: 0, stagger: 0.5 }, '-=0.5')
-      .from(carouselButtons, { y: 60, stagger: 0.4, pointerEvents: 'none', clearProps: 'all', ease: 'back' })
+    return tl.from(carouselImage, 0.55, { y: 100, opacity: 0 })
+      .from(carouselDescription, { y: -40, opacity: 0, stagger: 0.2 }, '-=0.3')
+      .from(carouselButtons, { y: 60, stagger: 0.2, pointerEvents: 'none', clearProps: 'all', ease: 'back' }, '-=0.5')
       .add(autoSwitch)
   }
 
