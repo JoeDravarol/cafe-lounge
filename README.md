@@ -3,6 +3,7 @@
 Static webpage to learn about Cafe Lounge's story, achievement and the services they offer.
  
 (Open in Firefox for the best experience)
+
 [Demo](https://joedravarol.github.io/cafe-lounge/) 
  
 ## Getting Started
