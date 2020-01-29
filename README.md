@@ -1,6 +1,6 @@
 # Cafe Lounge
  
-Static webpage to learn about Cafe Lounge's story, achievement and the services they offer.
+We specialise in sourcing and roasting coffee for the premium commercial and speciality coffee sector. With over 30 years combined experience in coffee we are dedicated to the highest practices throughout our roasting process. Cafe Lounge is an amalgamation of a savvy business idea, passion for coffee and an experienced team.
  
 (Open in Firefox for the best experience)
 
